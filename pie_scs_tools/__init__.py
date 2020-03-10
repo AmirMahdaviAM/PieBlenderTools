@@ -1,11 +1,11 @@
 bl_info = {
     "name": "Pie SCS Blender Tools",
-    "description": "Pie Menu to make Operators Closer",
+    "description": "Pie Menu to put all panels together",
     "author": "AmirMahdavi (AM)",
     "version": (0, 0, 1),
     "blender": (2, 81, 0),
     "location": "3D View",
-    "tracker_url": "http://forum.scssoft.com/viewforum.php?",
+    "tracker_url": "https://forum.scssoft.com/viewtopic.php?f=162&t=282487",
     "support": "COMMUNITY",
     "category": "Interface"}
 

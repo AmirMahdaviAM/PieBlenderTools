@@ -2,8 +2,9 @@ bl_info = {
     "name": "Pie SCS Blender Tools",
     "description": "Pie Menu to put all panels together",
     "author": "AmirMahdavi (AM)",
-    "version": (0, 0, 1),
+    "version": (0, 0, 2),
     "blender": (2, 81, 0),
+    "warning": "Alpha",
     "location": "3D View",
     "tracker_url": "https://forum.scssoft.com/viewtopic.php?f=162&t=282487",
     "support": "COMMUNITY",
@@ -27,9 +28,9 @@ class PIE_PT_SCSPreferences(AddonPreferences):
         layout.label(text="Hotkey - 'Shif+Ctrl+Alt+A'       For change it, go to Keymap, search SCS Blender Tools", icon="INFO")
 
 
-######     Main Pie    ######
-
 icon = Icons.Types
+
+######     Main Pie    ######
 
 class PIE_MT_PieSCS(Menu):
     bl_idname = "PIE_MT_PieSCS"
@@ -65,8 +66,8 @@ class PIE_MT_PieSCS(Menu):
         gap = other.column()
         gap.separator()
         gap.scale_y = 3.8
+
         SnapIcon = "SNAP_ON" if scs_globals().use_alternative_bases else "SNAP_OFF"
-        obj = context.active_object
 
         other_menu = other.box().column()
         other_menu.menu("PIE_MT_SCSExportScope", icon="SEQ_CHROMA_SCOPE")
@@ -75,13 +76,7 @@ class PIE_MT_PieSCS(Menu):
         row.popover("SCS_TOOLS_PT_PathSettingsPresets", text="", icon="PRESET")
         row.operator("scene.scs_tools_select_project_path", text="Base Path", icon="FILEBROWSER")
         row.prop(scs_globals(), "use_alternative_bases", icon=SnapIcon, icon_only=True)
-        row1 = other_menu.row(align=True)
-        row1.enabled = context.active_object.scs_props.empty_object_type == "SCS_Root"
-        row1.prop(obj.scs_props, "scs_root_object_allow_custom_path", text="")
-        row2 = row1.row(align=True)
-        row2.enabled = obj.scs_props.scs_root_object_allow_custom_path
-        props = row2.operator("scene.scs_tools_select_dir_inside_base", text="Export Path", icon='FILEBROWSER')
-        props.type = "GameObjectExportPath"
+        other_menu.operator('scene.scs_tools_select_dir_inside_base', text="DefaultExportPath", icon="FILEBROWSER").type = "DefaultExportPath"
         other_menu.prop(scs_globals(), "base_paint_color", icon_only=True)
 
 
@@ -111,7 +106,7 @@ class PIE_MT_PieSCS(Menu):
         pie.separator()
         pie.separator()
         other = pie.column()
-        other.scale_x = 1.05
+        other.scale_x = 1.06
         other.scale_y = 1.3
         gap = other.column()
         gap.separator()
@@ -154,10 +149,8 @@ class PIE_PT_SCSVertexPaint(Panel):
         row.prop(ptr, "color", icon_only=True)
         col.operator("paint.vertex_color_dirt", text="Dirty Color")
         col.separator()
-        props = col.operator("mesh.scs_tools_wrap_vertex_colors", text="Wrap Selected")
-        props.wrap_type = "selected"
-        props = col.operator("mesh.scs_tools_wrap_vertex_colors", text="Wrap All")
-        props.wrap_type = "all"
+        col.operator("mesh.scs_tools_wrap_vertex_colors", text="Wrap Selected").wrap_type = "selected"
+        col.operator("mesh.scs_tools_wrap_vertex_colors", text="Wrap All").wrap_type = "all"
         col.separator()
         col.operator("mesh.scs_tools_print_vertex_colors_stats")
 

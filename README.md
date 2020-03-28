@@ -5,7 +5,7 @@ Pie Menu to put all panels together
 I'm **NOT** a programmer, just look around blender codes and copy, paste, tweak them to make a pie for easier work
 and yeak, i know 50Keda create a tab in the topbar with all panels, but i love Pie menu. ;)
 
-![Pie SCS Blender Tools](https://i.imgur.com/Up7MV3K.png)
+![Pie SCS Blender Tools](https://i.imgur.com/SCfUBFZ.png)
 
 ## Installation
 - [Download Latest Realese](https://github.com/AmirMahdaviAM/PieBlenderTools/releases) and Extract
